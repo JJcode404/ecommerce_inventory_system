@@ -1,7 +1,11 @@
-const path = require("node:path");
-const express = require("express");
-const newMessageRouter = require("./routers/newMessages");
-const { indexRouter } = require("./routers/indexRouter");
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import express from "express";
+import { indexRouter } from "./routers/indexRouter.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const assetsPath = path.join(__dirname, "public");
 
 const app = express();
@@ -10,15 +14,8 @@ app.use(express.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 app.use(express.static(assetsPath));
+
 app.use("/", indexRouter);
-app.use("/new", newMessageRouter);
-app.use((err, req, res, next) => {
-  console.error(err);
-  const statusCode = err.statusCode || 500;
-  res
-    .status(statusCode)
-    .json({ error: err.message || "Internal Server Error" });
-});
 
 const PORT = 3000;
 app.listen(PORT, () => {

@@ -3,70 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mini Messaging Board</title>
-    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <title>FlyFlex Inventory System</title>
   </head>
   <body>
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Mini Messaging Board</title>
-        <link rel="stylesheet" href="/style.css" />
-      </head>
-      <body>
-        <div class="header">
-          <div class="intro">
-            <h1>Chats</h1>
-            <h4>Welcome to your chat inbox, check out your messages</h4>
-          </div>
-          <div class="logo">
-            <a href="/new">
-              <img src="/icons/plus.png" alt="add new message icon"
-            /></a>
-          </div>
-        </div>
-
-        <div class="chat-container">
-          <div class="message-list">
-            <% messages.forEach((message, index) => { %>
-            <div class="containerMessage" onclick="loadMessage('<%= index %>')">
-              <div class="userDetails">
-                <div class="profile">
-                  <img src="<%= message.profile %>" alt="profile" />
-                </div>
-                <div class="messageBody">
-                  <div class="username"><%= message.user %></div>
-                  <div class="message"><%= message.text %></div>
-                </div>
-              </div>
-              <div class="time">
-                <%= new Date(message.added).toLocaleTimeString("en-US", { hour:
-                "numeric", minute: "2-digit", hour12: true }) %>
-              </div>
-            </div>
-            <% }) %>
-          </div>
-
-          <div class="message-details-container">
-            <div id="message-details">
-              <h2>Select a message to view details</h2>
-            </div>
-          </div>
-        </div>
-
-        <script>
-          function loadMessage(index) {
-            fetch("/message/" + index)
-              .then((response) => response.text())
-              .then((data) => {
-                document.getElementById("message-details").innerHTML = data;
-              })
-              .catch((error) => console.error("Error loading message:", error));
-          }
-        </script>
-      </body>
-    </html>
+    <%- include('partials/sidebar') %>
+    <div class="content"></div>
   </body>
 </html>
