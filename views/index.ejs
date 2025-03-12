@@ -7,7 +7,67 @@
     <title>FlyFlex Inventory System</title>
   </head>
   <body>
-    <%- include('partials/sidebar') %>
-    <div class="content"></div>
+    <div class="mainContainer">
+      <%- include('partials/sidebar') %>
+      <div class="content">
+        <div class="header"><%- include('partials/searchbar') %></div>
+        <div class="dashboard-container">
+          <div class="card">
+            <div class="left">
+              <p>Customers</p>
+              <p>59999</p>
+            </div>
+            <div class="right">
+              <img src="images/icons/user.svg" alt="" />
+            </div>
+          </div>
+          <div class="card">
+            <div class="left">
+              <p>Total Products</p>
+              <p>56756</p>
+            </div>
+            <div class="right">
+              <img src="images/icons/shopping-cart.svg" alt="" />
+            </div>
+          </div>
+          <div class="card">
+            <div class="left">
+              <p>Orders</p>
+              <p>5699</p>
+            </div>
+            <div class="right">
+              <img src="images/icons/truck.svg" alt="" />
+            </div>
+          </div>
+          <div class="card">
+            <div class="left">
+              <p>Total Sales</p>
+              <p>Ksh 8999</p>
+            </div>
+            <div class="right">
+              <img src="images/icons/badge-dollar-sign.svg" alt="" />
+            </div>
+          </div>
+          <div class="card">
+            <div class="left">
+              <p>Top Selling Item</p>
+              <p>Ksh 456547</p>
+            </div>
+            <div class="right">
+              <img src="images/icons/star.svg" alt="" />
+            </div>
+          </div>
+          <div class="card">
+            <div class="left">
+              <p>Out Of Stock</p>
+              <p>4</p>
+            </div>
+            <div class="right">
+              <img src="images/icons/battery-low.svg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
