@@ -84,6 +84,7 @@ p,
 }
 
 .general-information input,
+.pricingDetails input,
 select {
   padding: 10px;
   border: 1px solid #ccc;
@@ -100,11 +101,21 @@ select {
 .informationForm .right {
   width: 100%;
 }
+.last {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.last div {
+  width: 100%;
+}
+
 .informationForm input {
   margin: 10px 0px;
   color: gray;
 }
 .informationForm input:focus,
+.pricingDetails input:focus,
 select:focus {
   border-color: #ff5722;
   outline: none;
@@ -126,6 +137,10 @@ select {
   font-size: 14px;
   resize: vertical; /* Allows resizing only vertically */
   transition: 0.3s ease-in-out;
+}
+.pricingDetails {
+  display: flex;
+  gap: 10px;
 }
 
 textarea:focus {
