@@ -72,9 +72,6 @@ input[type="file"]::file-selector-button {
 input[type="file"]::file-selector-button:hover {
   background: orangered;
 }
-hr {
-  margin-top: 10px;
-}
 
 p,
 .bottom .information {
@@ -97,6 +94,9 @@ select {
   display: flex;
   gap: 16px;
 }
+.informationForm.personal {
+  display: block;
+}
 .informationForm .left,
 .informationForm .right {
   width: 100%;
@@ -109,13 +109,18 @@ select {
 .last div {
   width: 100%;
 }
+.Description {
+  margin-bottom: 10px;
+}
 
-.informationForm input {
+.informationForm input,
+.last input {
   margin: 10px 0px;
   color: gray;
 }
 .informationForm input:focus,
 .pricingDetails input:focus,
+.last input:focus,
 select:focus {
   border-color: #ff5722;
   outline: none;
@@ -147,7 +152,6 @@ textarea:focus {
   border-color: #ff5722;
   outline: none;
 }
-
 .submit {
   display: flex;
   gap: 10px;
@@ -180,4 +184,36 @@ textarea:focus {
 
 .submit button:last-child:hover {
   background-color: #999;
+}
+.gender {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.gender input {
+  width: fit-content;
+}
+.name {
+  display: flex;
+  gap: 16px;
+}
+.name div {
+  width: 100%;
+}
+
+.gender-options {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Adjust spacing between radio buttons */
+}
+
+.gender-options input[type="radio"] {
+  display: inline-block;
+  margin-right: 5px; /* Space between input and label */
+}
+
+.gender-options label {
+  display: inline-block;
+  cursor: pointer;
 }

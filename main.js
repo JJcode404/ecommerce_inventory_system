@@ -4,6 +4,7 @@ import express from "express";
 import { indexRouter } from "./routers/indexRouter.js";
 import { categoryRouter } from "./routers/categoryAddRouter.js";
 import { getproductAddPage } from "./controllers/productAdd.js";
+import { customerRouter } from "./routers/customerRouter.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +21,7 @@ app.use(express.static(assetsPath));
 app.use("/", indexRouter);
 app.use("/add/category", categoryRouter);
 app.use("/add/product", getproductAddPage);
+app.use("/customer", customerRouter);
 
 const PORT = 3000;
 app.listen(PORT, () => {
