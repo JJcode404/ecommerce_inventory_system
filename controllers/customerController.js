@@ -3,5 +3,17 @@ const getcustomerAddPage = (req, res) => {
     title: "Add customer",
   });
 };
+const addCustomer = (req, res) => {
+  const {
+    firstName,
+    firstLast,
+    email,
+    phoneNumber,
+    gender,
+    address,
+    country,
+    postalcode,
+  } = req.body;
+};
 
-export { getcustomerAddPage };
+export { getcustomerAddPage, addCustomer };

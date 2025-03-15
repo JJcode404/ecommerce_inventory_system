@@ -134,13 +134,13 @@ select {
   color: gray;
 }
 .general-information textarea {
-  width: 100%; /* Takes full width of the parent */
-  height: 150px; /* Set a fixed height */
+  width: 100%;
+  height: 150px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
-  resize: vertical; /* Allows resizing only vertically */
+  resize: vertical; 
   transition: 0.3s ease-in-out;
 }
 .pricingDetails {
@@ -205,12 +205,12 @@ textarea:focus {
 .gender-options {
   display: flex;
   align-items: center;
-  gap: 15px; /* Adjust spacing between radio buttons */
+  gap: 15px; 
 }
 
 .gender-options input[type="radio"] {
   display: inline-block;
-  margin-right: 5px; /* Space between input and label */
+  margin-right: 5px; 
 }
 
 .gender-options label {
