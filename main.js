@@ -19,8 +19,8 @@ app.set("view engine", "ejs");
 app.use(express.static(assetsPath));
 
 app.use("/", indexRouter);
-app.use("/add/category", categoryRouter);
-app.use("/add/product", getproductAddPage);
+app.use("/category", categoryRouter);
+app.use("/product", getproductAddPage);
 app.use("/customer", customerRouter);
 
 const PORT = 3000;
