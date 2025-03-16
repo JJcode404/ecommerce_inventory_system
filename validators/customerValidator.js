@@ -24,12 +24,7 @@ const validateCustomer = [
     .isLength({ min: 1, max: 10 })
     .withMessage(`Last name ${lengthErr}`),
   body("email").isEmail().withMessage(`Email ${emailErr}`),
-  body("age")
-    .trim()
-    .isInt({ min: 18, max: 100 })
-    .withMessage(`Age ${ageErr}`)
-    .toInt(),
-  body("phone")
+  body("phoneNumber")
     .trim()
     .matches(/^(\+254|0)[17]\d{8}$/)
     .withMessage(`Phone ${phoneErr}`),
@@ -37,9 +32,9 @@ const validateCustomer = [
     .trim()
     .matches(/^[a-zA-Z0-9\s,.-]+$/)
     .withMessage(`Address ${addressErr}`)
-    .isLength({ min: 5, max: 100 })
+    .isLength({ min: 3, max: 100 })
     .withMessage("Address must be between 5 and 100 characters."),
-  body("postalCode")
+  body("postalcode")
     .trim()
     .matches(/^\d{5}$/)
     .withMessage(`Postal code ${postalErr}`),

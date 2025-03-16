@@ -10,7 +10,13 @@ CREATE TABLE IF NOT EXISTS Users (
     user_id SERIAL PRIMARY KEY,
     name VARCHAR(100),
     email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(20),
+    gender VARCHAR(10),
+    address TEXT,
+    country VARCHAR(100),
+    postal_code VARCHAR(20),
+    image TEXT
 );
 
 CREATE TABLE IF NOT EXISTS Categories (

@@ -1,19 +1,51 @@
+import { pool } from "../db/pool.js";
+
 const getcustomerAddPage = (req, res) => {
   res.render("customer/customerAdd", {
     title: "Add customer",
   });
 };
-const addCustomer = (req, res) => {
+
+const addCustomer = async (req, res) => {
   const {
     firstName,
-    firstLast,
+    lastName,
     email,
     phoneNumber,
     gender,
     address,
     country,
     postalcode,
+    image,
   } = req.body;
+
+  try {
+    const query = `
+      INSERT INTO Users (name, email, phone_number, gender, address, country, postal_code, image, password)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, 'default_password') 
+      RETURNING *;
+    `;
+
+    const values = [
+      `${firstName} ${lastName}`,
+      email,
+      phoneNumber,
+      gender,
+      address,
+      country,
+      postalcode,
+      image,
+    ];
+
+    const result = await pool.query(query, values);
+
+    res
+      .status(201)
+      .json({ message: "User added successfully", user: result.rows[0] });
+  } catch (error) {
+    console.error("Error adding user:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 export { getcustomerAddPage, addCustomer };

@@ -7,6 +7,6 @@ import { validateCustomer } from "../validators/customerValidator.js";
 
 const customerRouter = Router();
 customerRouter.get("/addCustomer", getcustomerAddPage);
-customerRouter.post("/addCutomer", validateCustomer, addCustomer);
+customerRouter.post("/addCustomer", validateCustomer, addCustomer);
 
 export { customerRouter };
