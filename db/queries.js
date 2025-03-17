@@ -20,7 +20,7 @@ function createAnalytics() {
     const result = await pool.query(
       "SELECT SUM(quantity * price) AS total_sales FROM OrderItems;"
     );
-    return Number(result.rows[0].sum) || 0;
+    return result.rows[0].total_sales || 0;
   };
 
   const getTotalOutstockProducts = async () => {

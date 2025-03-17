@@ -99,6 +99,44 @@ CREATE TABLE IF NOT EXISTS Shipping (
     estimated_delivery_date DATE,
     FOREIGN KEY (order_id) REFERENCES Orders(order_id) ON DELETE CASCADE
 );
+
+INSERT INTO Users (name, email, password, phone_number, gender, address, country, postal_code, image) VALUES
+    ('Alice Johnson', 'alice@example.com', 'hashedpassword', '1234567890', 'Female', '123 Main St', 'USA', '10001', 'alice.jpg'),
+    ('Bob Smith', 'bob@example.com', 'hashedpassword', '9876543210', 'Male', '456 Elm St', 'Canada', 'A1B2C3', 'bob.jpg'),
+    ('Charlie Brown', 'charlie@example.com', 'hashedpassword', '1112223333', 'Male', '789 Oak St', 'UK', 'SW1A 1AA', 'charlie.jpg'),
+    ('Diana Ross', 'diana@example.com', 'hashedpassword', '4445556666', 'Female', '101 Pine St', 'Australia', '2000', 'diana.jpg'),
+    ('Eve Adams', 'eve@example.com', 'hashedpassword', '5556667777', 'Female', '555 Maple St', 'Germany', '10115', 'eve.jpg'),
+    ('Frank Harris', 'frank@example.com', 'hashedpassword', '6667778888', 'Male', '777 Birch St', 'France', '75001', 'frank.jpg');
+
+INSERT INTO Categories (name, created_by, stock, publish_date, description, image) VALUES
+    ('Electronics', 'Admin', 100, '2024-03-01', 'Gadgets and devices', 'electronics.jpg'),
+    ('Clothing', 'Admin', 200, '2024-03-02', 'Men and women apparel', 'clothing.jpg'),
+    ('Home & Kitchen', 'Admin', 150, '2024-03-03', 'Household essentials', 'home.jpg'),
+    ('Sports', 'Admin', 80, '2024-03-04', 'Sports equipment and gear', 'sports.jpg');
+
+INSERT INTO Products (name, description, price, stock_quantity, category, brand, weight, gender, size, color, discount, image) VALUES
+    ('Smartphone', 'Latest model smartphone', 699.99, 50, 'Electronics', 'BrandX', '200g', 'Unisex', 'N/A', 'Black', 5, 'smartphone.jpg'),
+    ('Laptop', 'Powerful laptop for work', 1299.99, 30, 'Electronics', 'BrandY', '2kg', 'Unisex', 'N/A', 'Silver', 10, 'laptop.jpg'),
+    ('Headphones', 'Noise-canceling headphones', 199.99, 80, 'Electronics', 'BrandZ', '250g', 'Unisex', 'N/A', 'Blue', 15, 'headphones.jpg'),
+    ('T-Shirt', 'Cotton T-shirt', 19.99, 100, 'Clothing', 'BrandA', '300g', 'Male', 'L', 'White', 5, 'tshirt.jpg'),
+    ('Blender', 'High-speed kitchen blender', 79.99, 40, 'Home & Kitchen', 'BrandB', '1.5kg', 'Unisex', 'N/A', 'Red', 10, 'blender.jpg'),
+    ('Soccer Ball', 'Official size 5 soccer ball', 49.99, 60, 'Sports', 'BrandC', '450g', 'Unisex', 'N/A', 'White/Black', 7, 'soccerball.jpg');
+
+INSERT INTO Orders (user_id, total_price, status) VALUES
+    (1, 699.99, 'Pending'),
+    (2, 1299.99, 'Shipped'),
+    (3, 199.99, 'Delivered'),
+    (4, 19.99, 'Processing'),
+    (5, 79.99, 'Pending'),
+    (6, 49.99, 'Shipped');
+
+INSERT INTO OrderItems (order_id, product_id, quantity, price) VALUES
+    (1, 1, 1, 699.99),
+    (2, 2, 1, 1299.99),
+    (3, 3, 2, 199.99),
+    (4, 4, 3, 19.99),
+    (5, 5, 1, 79.99),
+    (6, 6, 2, 49.99);
 `;
 
 async function main() {
