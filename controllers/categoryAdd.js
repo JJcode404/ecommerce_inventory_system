@@ -6,9 +6,9 @@ const getCategoryAddPage = (req, res) => {
 };
 
 const addCategory = async (req, res) => {
-  const { categoryTitle, createdBy, stock, publishDate, description } =
+  console.log(req.body);
+  const { categoryTitle, createdBy, stock, publishDate, description, image } =
     req.body;
-  const image = req.file ? req.file.filename : null; // Assuming you are using multer for file uploads
 
   try {
     const query = `
