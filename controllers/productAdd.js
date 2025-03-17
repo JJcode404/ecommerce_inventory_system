@@ -1,7 +1,60 @@
+import { pool } from "../db/pool.js";
+
 const getproductAddPage = (req, res) => {
+  console.log("product page displayed");
   res.render("product/productAdd", {
     title: "Add Product",
   });
 };
 
-export { getproductAddPage };
+const addProduct = async (req, res) => {
+  console.log(req.body);
+  const {
+    productName,
+    description,
+    price,
+    stock,
+    productCategory,
+    brandName,
+    weight,
+    gender,
+    size,
+    color,
+    discount,
+    image,
+  } = req.body;
+
+  try {
+    const query = `
+      INSERT INTO Products (name, description, price, stock_quantity, category, brand, weight, gender, size, color, discount,image) 
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) 
+      RETURNING *;
+    `;
+
+    const values = [
+      productName,
+      description,
+      price,
+      stock,
+      productCategory,
+      brandName,
+      weight,
+      gender,
+      size,
+      color,
+      discount,
+      image,
+    ];
+
+    const result = await pool.query(query, values);
+
+    res
+      .status(201)
+      .json({ message: "Product added successfully", product: result.rows[0] });
+  } catch (error) {
+    console.error("Error adding product:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+export { getproductAddPage, addProduct };

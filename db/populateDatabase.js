@@ -21,7 +21,12 @@ CREATE TABLE IF NOT EXISTS Users (
 
 CREATE TABLE IF NOT EXISTS Categories (
     category_id SERIAL PRIMARY KEY,
-    name VARCHAR(100) UNIQUE NOT NULL
+    name VARCHAR(100) UNIQUE NOT NULL,
+    created_by VARCHAR(50) NOT NULL,
+    stock INT NOT NULL DEFAULT 0,
+    publish_date DATE,
+    description TEXT,
+    image TEXT
 );
 
 CREATE TABLE IF NOT EXISTS Products (
@@ -30,9 +35,16 @@ CREATE TABLE IF NOT EXISTS Products (
     description TEXT,
     price DECIMAL(10,2) NOT NULL,
     stock_quantity INT NOT NULL,
-    category_id INT,
-    FOREIGN KEY (category_id) REFERENCES Categories(category_id) ON DELETE SET NULL
+    category VARCHAR(100) NOT NULL,
+    brand VARCHAR(100),
+    weight VARCHAR(50),
+    gender VARCHAR(10),
+    size VARCHAR(10),
+    color VARCHAR(50),
+    discount DECIMAL(5,2) DEFAULT 0,
+    image TEXT
 );
+
 
 CREATE TABLE IF NOT EXISTS Cart (
     cart_id SERIAL PRIMARY KEY,
