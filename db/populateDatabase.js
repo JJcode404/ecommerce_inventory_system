@@ -35,16 +35,16 @@ CREATE TABLE IF NOT EXISTS Products (
     description TEXT,
     price DECIMAL(10,2) NOT NULL,
     stock_quantity INT NOT NULL,
-    category VARCHAR(100) NOT NULL,
+    category_id INT NOT NULL,
     brand VARCHAR(100),
     weight VARCHAR(50),
     gender VARCHAR(10),
     size VARCHAR(10),
     color VARCHAR(50),
     discount DECIMAL(5,2) DEFAULT 0,
-    image TEXT
+    image TEXT,
+    FOREIGN KEY (category_id) REFERENCES Categories(category_id) ON DELETE CASCADE
 );
-
 
 CREATE TABLE IF NOT EXISTS Cart (
     cart_id SERIAL PRIMARY KEY,
@@ -114,13 +114,31 @@ INSERT INTO Categories (name, created_by, stock, publish_date, description, imag
     ('Home & Kitchen', 'Admin', 150, '2024-03-03', 'Household essentials', 'home.jpg'),
     ('Sports', 'Admin', 80, '2024-03-04', 'Sports equipment and gear', 'sports.jpg');
 
-INSERT INTO Products (name, description, price, stock_quantity, category, brand, weight, gender, size, color, discount, image) VALUES
-    ('Smartphone', 'Latest model smartphone', 699.99, 50, 'Electronics', 'BrandX', '200g', 'Unisex', 'N/A', 'Black', 5, 'smartphone.jpg'),
-    ('Laptop', 'Powerful laptop for work', 1299.99, 30, 'Electronics', 'BrandY', '2kg', 'Unisex', 'N/A', 'Silver', 10, 'laptop.jpg'),
-    ('Headphones', 'Noise-canceling headphones', 199.99, 80, 'Electronics', 'BrandZ', '250g', 'Unisex', 'N/A', 'Blue', 15, 'headphones.jpg'),
-    ('T-Shirt', 'Cotton T-shirt', 19.99, 100, 'Clothing', 'BrandA', '300g', 'Male', 'L', 'White', 5, 'tshirt.jpg'),
-    ('Blender', 'High-speed kitchen blender', 79.99, 40, 'Home & Kitchen', 'BrandB', '1.5kg', 'Unisex', 'N/A', 'Red', 10, 'blender.jpg'),
-    ('Soccer Ball', 'Official size 5 soccer ball', 49.99, 60, 'Sports', 'BrandC', '450g', 'Unisex', 'N/A', 'White/Black', 7, 'soccerball.jpg');
+INSERT INTO Products (name, description, price, stock_quantity, category_id, brand, weight, gender, size, color, discount, image) VALUES
+    ('Smartphone', 'Latest model smartphone', 699.99, 50, 
+        (SELECT category_id FROM Categories WHERE name = 'Electronics'), 
+        'BrandX', '200g', 'Unisex', 'N/A', 'Black', 5, 'smartphone.jpg'),
+
+    ('Laptop', 'Powerful laptop for work', 1299.99, 30, 
+        (SELECT category_id FROM Categories WHERE name = 'Electronics'), 
+        'BrandY', '2kg', 'Unisex', 'N/A', 'Silver', 10, 'laptop.jpg'),
+
+    ('Headphones', 'Noise-canceling headphones', 199.99, 80, 
+        (SELECT category_id FROM Categories WHERE name = 'Electronics'), 
+        'BrandZ', '250g', 'Unisex', 'N/A', 'Blue', 15, 'headphones.jpg'),
+
+    ('T-Shirt', 'Cotton T-shirt', 19.99, 100, 
+        (SELECT category_id FROM Categories WHERE name = 'Clothing'), 
+        'BrandA', '300g', 'Male', 'L', 'White', 5, 'tshirt.jpg'),
+
+    ('Blender', 'High-speed kitchen blender', 79.99, 40, 
+        (SELECT category_id FROM Categories WHERE name = 'Home & Kitchen'), 
+        'BrandB', '1.5kg', 'Unisex', 'N/A', 'Red', 10, 'blender.jpg'),
+
+    ('Soccer Ball', 'Official size 5 soccer ball', 49.99, 60, 
+        (SELECT category_id FROM Categories WHERE name = 'Sports'), 
+        'BrandC', '450g', 'Unisex', 'N/A', 'White/Black', 7, 'soccerball.jpg');
+
 
 INSERT INTO Orders (user_id, total_price, status) VALUES
     (1, 699.99, 'Pending'),

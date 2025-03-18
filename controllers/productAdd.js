@@ -1,10 +1,21 @@
 import { pool } from "../db/pool.js";
+import { analytics } from "../db/queries.js";
 
 const getproductAddPage = (req, res) => {
-  console.log("product page displayed");
   res.render("product/productAdd", {
     title: "Add Product",
   });
+};
+
+const getProductList = async (req, res) => {
+  try {
+    const stats = await analytics.getproductList();
+    console.log(stats);
+    res.render("product/productList", { stats: stats });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving analytics data" });
+  }
 };
 
 const addProduct = async (req, res) => {
@@ -57,4 +68,4 @@ const addProduct = async (req, res) => {
   }
 };
 
-export { getproductAddPage, addProduct };
+export { getproductAddPage, addProduct, getProductList };

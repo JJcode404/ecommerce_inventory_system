@@ -50,6 +50,19 @@ function createAnalytics() {
       totalSold: Number(result.rows[0].total_sold),
     };
   };
+  const getproductList = async () => {
+    const result = await pool.query(`
+    SELECT 
+    p.name AS product_name,
+    p.price,
+    p.color,
+    p.stock_quantity AS stock,
+    c.name AS category_name
+    FROM Products p
+    JOIN Categories c ON p.category_id = c.category_id;
+    `);
+    return result.rows;
+  };
 
   const getAnalytics = async () => {
     const [customers, products, orders, sales, outOfstocks, topSellingProduct] =
@@ -79,6 +92,7 @@ function createAnalytics() {
     getTotalSales,
     getAnalytics,
     getTotalOutstockProducts,
+    getproductList,
   };
 }
 
