@@ -5,7 +5,6 @@ const getproductAddPage = async (req, res) => {
   try {
     const categories = await analytics.getCategories();
     res.render("product/productAdd", {
-      title: "Add Product",
       categories,
     });
   } catch (error) {
@@ -18,7 +17,7 @@ const getProductList = async (req, res) => {
   try {
     const stats = await analytics.getproductList();
 
-    res.render("product/productList", { stats, categories });
+    res.render("product/productList", { stats });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error retrieving analytics data" });
@@ -44,7 +43,7 @@ const addProduct = async (req, res) => {
 
   try {
     const query = `
-      INSERT INTO Products (name, description, price, stock_quantity, category, brand, weight, gender, size, color, discount,image) 
+      INSERT INTO Products (name, description, price, stock_quantity, category_id, brand, weight, gender, size, color, discount,image) 
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) 
       RETURNING *;
     `;
