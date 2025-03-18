@@ -38,7 +38,11 @@
                 <td><%= category.created_by %></td>
                 <td><%= category.category_id %></td>
                 <td><%= category.stock%> Items Left</td>
-                <td><%= category.publish_date %></td>
+                <td>
+                  <%= new
+                  Date(category.publish_date).toLocaleDateString("en-US", {
+                  year: "numeric", month: "long", day: "numeric" }) %>
+                </td>
                 <td><button class="action-btn">View</button></td>
               </tr>
               <% }) %>
