@@ -1,9 +1,20 @@
 import { pool } from "../db/pool.js";
+import { analytics } from "../db/queries.js";
 
 const getcustomerAddPage = (req, res) => {
   res.render("customer/customerAdd", {
     title: "Add customer",
   });
+};
+const getCustomerList = async (req, res) => {
+  try {
+    const stats = await analytics.getCustomerList();
+    console.log(stats);
+    res.render("customer/customerList", { stats: stats });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving analytics data" });
+  }
 };
 
 const addCustomer = async (req, res) => {
@@ -48,4 +59,4 @@ const addCustomer = async (req, res) => {
   }
 };
 
-export { getcustomerAddPage, addCustomer };
+export { getcustomerAddPage, addCustomer, getCustomerList };

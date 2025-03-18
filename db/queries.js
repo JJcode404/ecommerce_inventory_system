@@ -63,6 +63,36 @@ function createAnalytics() {
     `);
     return result.rows;
   };
+  const getCategoryList = async () => {
+    const result = await pool.query(`
+      SELECT 
+      c.name,
+      c.category_id,
+      c.created_by,
+      c.stock,
+      c.publish_date
+      FROM categories c;
+      `);
+    return result.rows;
+  };
+  const getCustomerList = async () => {
+    const result = await pool.query(`
+      SELECT
+      u.user_id,
+      u.name,
+      u.email,
+      u.phone_number,
+      u.gender,
+      u.address,
+      u.country 
+      FROM users u;
+      `);
+    return result.rows;
+  };
+  const getCategories = async () => {
+    const result = await pool.query(`SELECT category_id, name FROM Categories`);
+    return result.rows;
+  };
 
   const getAnalytics = async () => {
     const [customers, products, orders, sales, outOfstocks, topSellingProduct] =
@@ -93,6 +123,9 @@ function createAnalytics() {
     getAnalytics,
     getTotalOutstockProducts,
     getproductList,
+    getCategoryList,
+    getCustomerList,
+    getCategories,
   };
 }
 

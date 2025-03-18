@@ -1,8 +1,19 @@
 import { pool } from "../db/pool.js";
+import { analytics } from "../db/queries.js";
 const getCategoryAddPage = (req, res) => {
   res.render("category/categoryAdd", {
     title: "Create roduct PCategory",
   });
+};
+const getCategoryList = async (req, res) => {
+  try {
+    const stats = await analytics.getCategoryList();
+    console.log(stats);
+    res.render("category/categoryList", { stats: stats });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving analytics data" });
+  }
 };
 
 const addCategory = async (req, res) => {
@@ -38,4 +49,4 @@ const addCategory = async (req, res) => {
   }
 };
 
-export { getCategoryAddPage, addCategory };
+export { getCategoryAddPage, addCategory, getCategoryList };

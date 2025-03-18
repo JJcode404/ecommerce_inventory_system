@@ -53,9 +53,11 @@
                     <label>Product Categories</label>
                     <select name="productCategory" id="productCategory">
                       <option value="">Choose Categories</option>
-                      <option value="fashion">Fashion</option>
-                      <option value="footwear">Footwear</option>
-                      <option value="electronics">Electronics</option>
+                      <% categories.forEach(category => { %>
+                      <option value="<%= category.category_id %>">
+                        <%= category.name %>
+                      </option>
+                      <% }) %>
                     </select>
                   </div>
                 </div>

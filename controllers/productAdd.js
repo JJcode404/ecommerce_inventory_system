@@ -1,17 +1,24 @@
 import { pool } from "../db/pool.js";
 import { analytics } from "../db/queries.js";
 
-const getproductAddPage = (req, res) => {
-  res.render("product/productAdd", {
-    title: "Add Product",
-  });
+const getproductAddPage = async (req, res) => {
+  try {
+    const categories = await analytics.getCategories();
+    res.render("product/productAdd", {
+      title: "Add Product",
+      categories,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error retrieving analytics data" });
+  }
 };
 
 const getProductList = async (req, res) => {
   try {
     const stats = await analytics.getproductList();
-    console.log(stats);
-    res.render("product/productList", { stats: stats });
+
+    res.render("product/productList", { stats, categories });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error retrieving analytics data" });
