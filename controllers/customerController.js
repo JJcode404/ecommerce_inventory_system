@@ -50,9 +50,10 @@ const addCustomer = async (req, res) => {
 
     const result = await pool.query(query, values);
 
-    res
-      .status(201)
-      .json({ message: "User added successfully", user: result.rows[0] });
+    res.render("thankyou", {
+      url: "/customer/customerList",
+      page: "customer List",
+    });
   } catch (error) {
     console.error("Error adding user:", error);
     res.status(500).json({ error: "Internal Server Error" });

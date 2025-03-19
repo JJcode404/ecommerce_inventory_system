@@ -65,9 +65,10 @@ const addProduct = async (req, res) => {
 
     const result = await pool.query(query, values);
 
-    res
-      .status(201)
-      .json({ message: "Product added successfully", product: result.rows[0] });
+    res.render("thankyou", {
+      url: "/product/productList",
+      page: "product List",
+    });
   } catch (error) {
     console.error("Error adding product:", error);
     res.status(500).json({ error: "Internal Server Error" });

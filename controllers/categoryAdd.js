@@ -39,9 +39,9 @@ const addCategory = async (req, res) => {
 
     const result = await pool.query(query, values);
 
-    res.status(201).json({
-      message: "Category added successfully",
-      category: result.rows[0],
+    res.render("thankyou", {
+      url: "/category/categoryList",
+      page: "category List",
     });
   } catch (error) {
     console.error("Error adding category:", error);
