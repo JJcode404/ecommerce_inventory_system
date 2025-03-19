@@ -11,6 +11,7 @@
 .mainContainer {
   display: grid;
   grid-template-columns: 1fr;
+  position: relative;
   height: 100vh;
 }
 
@@ -185,4 +186,41 @@ nav img {
   height: 20px;
   color: #888;
   pointer-events: none;
+}
+.copyright {
+  font-size: 20px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.gradient-text {
+  font-weight: bold;
+  background: linear-gradient(
+    45deg,
+    #ff5733,
+    #ffbd33,
+    #33ff57,
+    #3385ff,
+    #a833ff
+  );
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text; /* Standard property */
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 3s infinite linear;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
