@@ -6,8 +6,11 @@ const getIndex = async (req, res) => {
     console.log(stats);
     res.render("index", { stats: stats });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error retrieving analytics data" });
+    console.error("Error in getIndex:", error);
+    res.status(500).json({
+      message: "Error retrieving analytics data",
+      error: error.message,
+    });
   }
 };
 
