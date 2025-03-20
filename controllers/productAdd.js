@@ -4,6 +4,7 @@ import { analytics } from "../db/queries.js";
 const getproductAddPage = async (req, res) => {
   try {
     const categories = await analytics.getCategories();
+    console.log(categories);
     res.render("product/productAdd", {
       categories,
     });

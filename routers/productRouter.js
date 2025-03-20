@@ -9,6 +9,6 @@ import { validateProduct } from "../validators/productValidator.js";
 const productRouter = Router();
 productRouter.get("/addProduct", getproductAddPage);
 productRouter.get("/productList", getProductList);
-productRouter.post("/addProduct", validateProduct, addProduct);
+productRouter.post("/addProduct", addProduct);
 
 export { productRouter };

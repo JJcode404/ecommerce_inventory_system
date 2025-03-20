@@ -189,10 +189,8 @@ nav img {
 }
 .copyright {
   font-size: 20px;
-  position: absolute;
   bottom: 20px;
   left: 50%;
-  transform: translateX(-50%);
   text-align: center;
 }
 
