@@ -161,11 +161,8 @@ async function main() {
   console.log("Connecting to database:", process.env.DATABASE_NAME);
   console.log("seeding...");
   const client = new Client({
-    host: process.env.DATABASE_HOST,
-    user: process.env.DATABASE_USER,
-    database: process.env.DATABASE_NAME,
-    password: process.env.DATABASE_PASSWORD,
-    port: process.env.DB_PORT,
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
   });
   await client.connect();
   await client.query(SQL);
